@@ -1,6 +1,10 @@
 package com.openclassrooms.SafetyNetAlerts.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.openclassrooms.SafetyNetAlerts.DAO.FilterDAO;
 import com.openclassrooms.SafetyNetAlerts.DAO.FireStationDAO;
 import com.openclassrooms.SafetyNetAlerts.bean.FireStation;
@@ -14,6 +18,8 @@ import java.util.Map;
 
 public class FireStationController {
     private static Logger logger = LoggerFactory.getLogger(FireStationController.class);
+    private static ObjectMapper mapper = new ObjectMapper();
+    private static FilterProvider medicalFilter = new SimpleFilterProvider().addFilter("FireStationFilter", SimpleBeanPropertyFilter.serializeAll());
 
     @Autowired
     FireStationDAO firestationDAO;
