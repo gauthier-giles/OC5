@@ -18,6 +18,7 @@ public class MedicalRecord {
     String firstName;
     @NonNull
     String lastName;
+
     String birthdate;
     List<String> medications;
     List<String> allergies;

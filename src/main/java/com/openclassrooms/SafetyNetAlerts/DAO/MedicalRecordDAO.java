@@ -20,14 +20,21 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
     public Map<String, MedicalRecord> medicalRecords;
 
     @Autowired
-    public MedicalRecordDAO(JsonDTO jsonDTO){
+    public MedicalRecordDAO(JsonDTO jsonFileDTO){
         try {
-            this.medicalRecords = jsonDTO.getMedicalRecords();
-            logger.info("persons class initialized");
+            this.medicalRecords = jsonFileDTO.getMedicalRecords();
+            logger.info("class persons initialized");
         } catch (NullPointerException | IOException e) {
-            logger.error("failed to initialized", e);
+            logger.error("failed to initialize MedicalRecordDao", e);
         }
     }
+
+
+    @Override
+    public List<MedicalRecord> getMedicalRecords() {
+        return new ArrayList<>(this.medicalRecords.values());
+    }
+
 
     @Override
     public List<MedicalRecord> updateMedicalRecord(MedicalRecord recordToUpdate){
@@ -42,6 +49,8 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
         return new ArrayList<>(this.medicalRecords.values());
     }
 
+
+    @Override
     public List<MedicalRecord> addMedicalRecord(MedicalRecord recordToAdd){
         try{
             this.medicalRecords.put(recordToAdd.getFirstName() + " " + recordToAdd.getLastName(),recordToAdd);
@@ -51,6 +60,7 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
         }
         return new ArrayList<>(this.medicalRecords.values());
     }
+
 
     @Override
     public List<MedicalRecord> deleteMedicalRecord(MedicalRecord recordToDelete) {
@@ -65,10 +75,7 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
         return new ArrayList<>(this.medicalRecords.values());
     }
 
-    @Override
-    public Map<String, MedicalRecord> getMedicalRecords() {
-        return this.medicalRecords;
-    }
+
 
 
 }

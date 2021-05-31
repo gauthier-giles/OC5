@@ -20,20 +20,21 @@ public class FireStationDAO implements FireStationDAOInt{
     public Map<String, FireStation> firestations;
 
     @Autowired
-    public FireStationDAO(JsonDTO jsonDTO){
+    public FireStationDAO(JsonDTO jsonFileDTO){
         try {
-            this.firestations = jsonDTO.getFireStations();
-            logger.info("persons class initialized");
+            this.firestations = jsonFileDTO.getFireStations();
+            logger.info("Classe de gestion des personnes initialisée");
         } catch (NullPointerException | IOException e) {
-            logger.error("failed to initialize FirestationsDAO", e);
+            logger.error("echec pour initialiser FirestationsDAOImpl", e);
         }
     }
 
+
     @Override
-    public List<FireStation> updateFirestation(FireStation stationUpdate){
-        for(FireStation firestation: this.firestations.values()) {
-            if(firestation.getAddress().equals(stationUpdate.getAddress())){
-                firestation.setStation(stationUpdate.getStation());
+    public List<FireStation> updateFireStation(FireStation stationUpdate){
+        for(FireStation fireStation: this.firestations.values()) {
+            if(fireStation.getAddress().equals(stationUpdate.getAddress())){
+                fireStation.setStation(stationUpdate.getStation());
             }
         }
         return new ArrayList<>(this.firestations.values());
@@ -41,7 +42,7 @@ public class FireStationDAO implements FireStationDAOInt{
 
 
     @Override
-    public List<FireStation> addFirestation(FireStation stationToAdd){
+    public List<FireStation> addFireStation(FireStation stationToAdd){
         try {
             this.firestations.put(stationToAdd.getAddress(), stationToAdd);
             logger.info(stationToAdd.getAddress() + " is added");
@@ -50,8 +51,6 @@ public class FireStationDAO implements FireStationDAOInt{
         }
         return new ArrayList<>(this.firestations.values());
     }
-
-
 
 
     @Override
@@ -68,9 +67,8 @@ public class FireStationDAO implements FireStationDAOInt{
 
 
     @Override
-    public Map<String, FireStation> getFireStations() {
-        return this.firestations;
-        // retourner un Map plutot qu'un ArrayList
+    public List<FireStation> getFireStations() {
+        return new ArrayList<>(this.firestations.values());
     }
 
 }

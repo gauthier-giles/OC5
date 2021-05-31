@@ -16,10 +16,12 @@ public class Persons {
     String firstName;
     @NonNull
     String lastName;
+
     String address;
     String city;
     String zip;
     String phone;
     String email;
-    }
+
+}
 

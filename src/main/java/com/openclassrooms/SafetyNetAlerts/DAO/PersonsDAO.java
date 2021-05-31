@@ -21,18 +21,18 @@ public class PersonsDAO implements PersonsDAOInt {
     public Map<String, Persons> persons;
 
     @Autowired
-    public PersonsDAO(JsonDTO jsonDTO) {
+    public PersonsDAO(JsonDTO jsonFileDTO) {
         try {
-            this.persons = jsonDTO.getPersons();
-            logger.info("Persons Class initialized");
+            this.persons = jsonFileDTO.getPersons();
+            logger.info("class PersonsDAO initialized");
         } catch (NullPointerException | IOException e) {
-            logger.error("failed to initialized this class", e);
+            logger.error("failed to initialized class PersonsDAO", e);
         }
     }
 
     @Override
-    public Map<String, Persons> getPersons() {
-        return this.persons;
+    public List<Persons> getPersons() {
+        return new ArrayList<>(this.persons.values());
     }
 
     @Override

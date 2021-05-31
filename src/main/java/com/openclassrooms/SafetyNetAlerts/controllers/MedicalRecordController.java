@@ -29,7 +29,8 @@ public class MedicalRecordController {
         logger.info("/medicalrecord");
         String medicalRecord = null;
         try {
-            medicalRecord = mapper.writer(medicalFilter).withDefaultPrettyPrinter().writeValueAsString(medicalRecordDAO.getMedicalRecords());
+            medicalRecord = mapper.writer(medicalFilter).withDefaultPrettyPrinter().
+                    writeValueAsString(medicalRecordDAO.getMedicalRecords());
             logger.info(medicalRecord);
         }   catch (Exception e) {
             logger.error("Request failed. Exception error is: " + e);
@@ -43,7 +44,9 @@ public class MedicalRecordController {
         logger.info(String.valueOf(medicalRecord));
         String medicalRecordLeft = null;
         try {
-            medicalRecordLeft = mapper.writer(medicalFilter).withDefaultPrettyPrinter().writeValueAsString(medicalRecordDAO.deleteMedicalRecord(medicalRecord));
+            medicalRecordLeft = mapper.writer(medicalFilter).
+                    withDefaultPrettyPrinter().
+                    writeValueAsString(medicalRecordDAO.deleteMedicalRecord(medicalRecord));
             logger.info(medicalRecordLeft);
         }   catch (Exception e) {
             logger.error("Request failed. Exception error is: " + e);
@@ -57,7 +60,8 @@ public class MedicalRecordController {
         logger.info(String.valueOf(medicalRecord));
         String allMedicalRecord = null;
         try {
-            allMedicalRecord = mapper.writer(medicalFilter).withDefaultPrettyPrinter().writeValueAsString(medicalRecordDAO.addMedicalRecord(medicalRecord));
+            allMedicalRecord = mapper.writer(medicalFilter).withDefaultPrettyPrinter().
+                    writeValueAsString(medicalRecordDAO.addMedicalRecord(medicalRecord));
             logger.info(allMedicalRecord);
         }   catch (Exception e) {
             logger.error("Request failed. Exception error is: " + e);
@@ -71,7 +75,9 @@ public class MedicalRecordController {
         logger.info(String.valueOf(medicalRecord));
         String allMedicalRecord = null;
         try {
-            allMedicalRecord = mapper.writer(medicalFilter).withDefaultPrettyPrinter().writeValueAsString(medicalRecordDAO.updateMedicalRecord(medicalRecord));
+            allMedicalRecord = mapper.writer(medicalFilter).
+                    withDefaultPrettyPrinter().
+                    writeValueAsString(medicalRecordDAO.updateMedicalRecord(medicalRecord));
             logger.info(allMedicalRecord);
         }   catch (Exception e) {
             logger.error("Request failed. Exception error is: " + e);
