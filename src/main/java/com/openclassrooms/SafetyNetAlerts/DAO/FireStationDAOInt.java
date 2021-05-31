@@ -5,12 +5,13 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface FireStationDAOInt {
     List<FireStation> updateFirestation(FireStation fireStation) throws IOException, ParseException;
     List<FireStation> addFirestation(FireStation fireStation) throws IOException, ParseException;
    //List<FireStation> deleteFirestation(FireStation fireStation);
-    List<FireStation> getFireStations();
+    Map<String, FireStation> getFireStations();
 
     List<FireStation> deleteFireStation(FireStation stationToDelete);
 

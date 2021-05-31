@@ -31,8 +31,8 @@ public class PersonsDAO implements PersonsDAOInt {
     }
 
     @Override
-    public List<Persons> getPersons() {
-        return new ArrayList<>(this.persons.values());
+    public Map<String, Persons> getPersons() {
+        return this.persons;
     }
 
     @Override

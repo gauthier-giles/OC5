@@ -21,9 +21,12 @@ public class MedicalRecordController {
     @Autowired
     MedicalRecordDAO medicalRecordDAO;
 
+
+
+
     @GetMapping(value = "/medicalrecord", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getMedicalRecords() {
-        logger.info("http://localhost:8080/medicalrecord");
+        logger.info("/medicalrecord");
         String medicalRecord = null;
         try {
             medicalRecord = mapper.writer(medicalFilter).withDefaultPrettyPrinter().writeValueAsString(medicalRecordDAO.getMedicalRecords());
@@ -36,7 +39,7 @@ public class MedicalRecordController {
 
     @DeleteMapping(value = "/medicalrecord", produces = MediaType.APPLICATION_JSON_VALUE)
     public String removePerson(@RequestBody MedicalRecord medicalRecord) {
-        logger.info("http://localhost:8080/medicalrecord");
+        logger.info("medicalrecord");
         logger.info(String.valueOf(medicalRecord));
         String medicalRecordLeft = null;
         try {
@@ -50,7 +53,7 @@ public class MedicalRecordController {
 
     @PostMapping(value = "/medicalrecord", produces = MediaType.APPLICATION_JSON_VALUE)
     public String addPerson(@RequestBody MedicalRecord medicalRecord) {
-        logger.info("http://localhost:8080/medicalrecord");
+        logger.info("/medicalrecord");
         logger.info(String.valueOf(medicalRecord));
         String allMedicalRecord = null;
         try {
@@ -64,7 +67,7 @@ public class MedicalRecordController {
 
     @PutMapping(value = "/medicalrecord", produces = MediaType.APPLICATION_JSON_VALUE)
     public String updatePerson(@RequestBody MedicalRecord medicalRecord) {
-        logger.info("http://localhost:8080/medicalrecord");
+        logger.info("/medicalrecord");
         logger.info(String.valueOf(medicalRecord));
         String allMedicalRecord = null;
         try {

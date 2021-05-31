@@ -1,12 +1,11 @@
 package com.openclassrooms.SafetyNetAlerts.controllers;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.openclassrooms.SafetyNetAlerts.DAO.FilterDAO;
+import com.openclassrooms.SafetyNetAlerts.DAO.FilterService;
 import com.openclassrooms.SafetyNetAlerts.DAO.PersonsDAO;
 import com.openclassrooms.SafetyNetAlerts.bean.Persons;
 import org.slf4j.Logger;
@@ -29,7 +28,7 @@ public class PersonsController {
     PersonsDAO personDAO;
 
     @Autowired
-    FilterDAO filterDAO;
+    FilterService filterService;
 
     @GetMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getPerson() {
@@ -49,7 +48,7 @@ public class PersonsController {
         logger.info("http://localhost:8080/communityEmail?city=" + city);
         Map<String, List<String>> personEmails = null;
         try {
-            personEmails = filterDAO.getPersonsEmailInCity(city);
+            personEmails = filterService.getPersonsEmailInCity(city);
             logger.info(String.valueOf(personEmails));
         } catch (Exception e) {
             logger.error("Request failed. Exception error is: " + e);
@@ -58,46 +57,46 @@ public class PersonsController {
     }
 
 
-    @GetMapping(value = "/personInfo")
-    public List<JsonNode> getPersonInfo(String firstName, String lastName) {
-        logger.info("http://localhost:8080/personInfo?firstName=" + firstName + "&lastName=" + lastName);
-        List<JsonNode> persons = null;
-        try {
-            persons = filterDAO.getPersonFiltered(firstName, lastName);
-            logger.info(String.valueOf(persons));
-        } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
-        }
-        return persons;
-    }
+//    @GetMapping(value = "/personInfo")
+//    public List<JsonNode> getPersonInfo(String firstName, String lastName) {
+//        logger.info("http://localhost:8080/personInfo?firstName=" + firstName + "&lastName=" + lastName);
+//        List<JsonNode> persons = null;
+//        try {
+//            persons = filterService.getPersonFiltered(firstName, lastName);
+//            logger.info(String.valueOf(persons));
+//        } catch (Exception e) {
+//            logger.error("Request failed. Exception error is: " + e);
+//        }
+//        return persons;
+//    }
 
 
-    @GetMapping(value = "/childAlert")
-    public Map<String, List> getChildsAtAddress(String address) {
-        logger.info("http://localhost:8080/childAlert?address=" + address);
-        Map<String, List> childs = null;
-        try {
-            childs = filterDAO.countChildsAtAddress(address);
-            logger.info(String.valueOf(childs));
-        } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
-        }
-        return childs;
-    }
+//    @GetMapping(value = "/childAlert")
+//    public Map<String, List> getChildsAtAddress(String address) {
+//        logger.info("http://localhost:8080/childAlert?address=" + address);
+//        Map<String, List> childs = null;
+//        try {
+//            childs = filterService.countChildsAtAddress(address);
+//            logger.info(String.valueOf(childs));
+//        } catch (Exception e) {
+//            logger.error("Request failed. Exception error is: " + e);
+//        }
+//        return childs;
+//    }
 
 
-    @GetMapping(value = "/fire")
-    public Map<String, Object> getPersonsAndMedicalRecordsAndStationNumberOfAddress(String address) {
-        logger.info("http://localhost:8080/fire?address=" + address);
-        Map<String, Object> personsAndRecords = null;
-        try {
-            personsAndRecords = filterDAO.getPersonsMedicalRecordsAndStationNumberOfAddress(address);
-            logger.info(String.valueOf(personsAndRecords));
-        } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
-        }
-        return personsAndRecords;
-    }
+//    @GetMapping(value = "/fire")
+//    public Map<String, Object> getPersonsAndMedicalRecordsAndStationNumberOfAddress(String address) {
+//        logger.info("http://localhost:8080/fire?address=" + address);
+//        Map<String, Object> personsAndRecords = null;
+//        try {
+//            personsAndRecords = filterService.getPersonsMedicalRecordsAndStationNumberOfAddress(address);
+//            logger.info(String.valueOf(personsAndRecords));
+//        } catch (Exception e) {
+//            logger.error("Request failed. Exception error is: " + e);
+//        }
+//        return personsAndRecords;
+//    }
 
     @DeleteMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public String removePerson(@RequestBody Persons person) {

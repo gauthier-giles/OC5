@@ -29,7 +29,6 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
         }
     }
 
-
     @Override
     public List<MedicalRecord> updateMedicalRecord(MedicalRecord recordToUpdate){
         for(MedicalRecord medicalRecord: this.medicalRecords.values()) {
@@ -43,7 +42,6 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
         return new ArrayList<>(this.medicalRecords.values());
     }
 
-
     public List<MedicalRecord> addMedicalRecord(MedicalRecord recordToAdd){
         try{
             this.medicalRecords.put(recordToAdd.getFirstName() + " " + recordToAdd.getLastName(),recordToAdd);
@@ -53,7 +51,6 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
         }
         return new ArrayList<>(this.medicalRecords.values());
     }
-
 
     @Override
     public List<MedicalRecord> deleteMedicalRecord(MedicalRecord recordToDelete) {
@@ -68,10 +65,10 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
         return new ArrayList<>(this.medicalRecords.values());
     }
 
-
     @Override
-    public List<MedicalRecord> getMedicalRecords() {
-        return new ArrayList<>(this.medicalRecords.values());
+    public Map<String, MedicalRecord> getMedicalRecords() {
+        return this.medicalRecords;
     }
+
 
 }

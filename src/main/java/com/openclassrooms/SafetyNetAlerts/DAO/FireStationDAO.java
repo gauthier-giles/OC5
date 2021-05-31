@@ -68,8 +68,9 @@ public class FireStationDAO implements FireStationDAOInt{
 
 
     @Override
-    public List<FireStation> getFireStations() {
-        return new ArrayList<>(this.firestations.values());
+    public Map<String, FireStation> getFireStations() {
+        return this.firestations;
+        // retourner un Map plutot qu'un ArrayList
     }
 
 }

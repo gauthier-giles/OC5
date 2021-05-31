@@ -1,11 +1,10 @@
 package com.openclassrooms.SafetyNetAlerts.controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.openclassrooms.SafetyNetAlerts.DAO.FilterDAO;
+import com.openclassrooms.SafetyNetAlerts.DAO.FilterService;
 import com.openclassrooms.SafetyNetAlerts.DAO.FireStationDAO;
 import com.openclassrooms.SafetyNetAlerts.bean.FireStation;
 import org.slf4j.Logger;
@@ -16,46 +15,47 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+@RestController
 public class FireStationController {
     private static Logger logger = LoggerFactory.getLogger(FireStationController.class);
     private static ObjectMapper mapper = new ObjectMapper();
-    private static FilterProvider medicalFilter = new SimpleFilterProvider().addFilter("FireStationFilter", SimpleBeanPropertyFilter.serializeAll());
+    private static FilterProvider FireStationFilter = new SimpleFilterProvider().addFilter("FireStationFilter", SimpleBeanPropertyFilter.serializeAll());
 
     @Autowired
     FireStationDAO firestationDAO;
 
     @Autowired
-    FilterDAO filterDAO;
+    FilterService filterService;
 
 
-
-    @GetMapping(value = "/firestation")
-    public Map<String, Object> countAdultAndChildPerStation(int stationNumber) {
-        logger.info("http://localhost:8080/firestation?stationNumber=" + stationNumber);
-        Map<String, Object> adultAndChildPerStation = null;
-        try {
-            adultAndChildPerStation = filterDAO.countAdultAndChildPerStation(stationNumber);
-            logger.info(String.valueOf(adultAndChildPerStation));
-        } catch(Exception e) {
-            logger.error("Request failed. The exception error: " + e);
-        }
-        return adultAndChildPerStation;
-    }
-
-
-    @GetMapping(value = "/flood/stations")
-    public Map<String, List<JsonNode>> personsAndMedicalRecordPerAddressPerStation(String[] stations) {
-        String parameters = String.join("&", stations);
-        logger.info("http://localhost:8080/flood/stations?" + parameters);
-        Map<String, List<JsonNode>> personsAndMedicalRecord = null;
-        try {
-            personsAndMedicalRecord = filterDAO.getPersonsAndMedicalRecordPerAddressPerStation(stations);
-            logger.info(String.valueOf(personsAndMedicalRecord));
-        } catch(Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
-        }
-        return personsAndMedicalRecord;
-    }
+    // point d'arret ligne 35 modifier les list en Map
+//    @GetMapping(value = "/firestation")
+//    public Map<String, Object> countAdultAndChildPerStation(int stationNumber) {
+//        logger.info("http://localhost:8080/firestation?stationNumber=" + stationNumber);
+//        Map<String, Object> adultAndChildPerStation = null;
+//        try {
+//            adultAndChildPerStation = filterService.countAdultAndChildPerStation(stationNumber);
+//            logger.info(String.valueOf(adultAndChildPerStation));
+//        } catch(Exception e) {
+//            logger.error("Request failed. The exception error: ", e);
+//        }
+//        return adultAndChildPerStation;
+//    }
+//
+//
+//    @GetMapping(value = "/flood/stations")
+//    public Map<String, List<JsonNode>> personsAndMedicalRecordPerAddressPerStation(String[] stations) {
+//        String parameters = String.join("&", stations);
+//        logger.info("http://localhost:8080/flood/stations?" + parameters);
+//        Map<String, List<JsonNode>> personsAndMedicalRecord = null;
+//        try {
+//            personsAndMedicalRecord = filterService.getPersonsAndMedicalRecordPerAddressPerStation(stations);
+//            logger.info(String.valueOf(personsAndMedicalRecord));
+//        } catch(Exception e) {
+//            logger.error("Request failed. Exception error is: " + e);
+//        }
+//        return personsAndMedicalRecord;
+//    }
 
 
     @GetMapping(value = "/phoneAlert")
@@ -63,7 +63,7 @@ public class FireStationController {
         Map<String, List<String>> phoneNumbers = null;
         logger.info("http://localhost:8080/phoneAlert?stationNumber" + stationNumber);
         try {
-            phoneNumbers = filterDAO.getPhoneNumbersForStation(stationNumber);
+            phoneNumbers = filterService.getPhoneNumbersForStation(stationNumber);
             logger.info(String.valueOf(phoneNumbers));
         } catch (Exception e) {
             logger.error("Request failed. Exception error is: " + e);
