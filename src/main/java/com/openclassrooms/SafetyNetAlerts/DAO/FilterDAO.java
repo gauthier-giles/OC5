@@ -122,7 +122,7 @@ public class FilterDAO {
                 .stream()
                 .filter(person -> person.getAddress().equals(address))
                 .collect(Collectors.toList());
-        logger.info("persons at address: " + personsAtAddress);
+        logger.info("adults at address: " + personsAtAddress);
 
         List<JsonNode> childsFiltered = new ArrayList<>();
         FilterProvider personFilter = new SimpleFilterProvider().addFilter("personFilter", SimpleBeanPropertyFilter.filterOutAllExcept("firstName", "lastName"));

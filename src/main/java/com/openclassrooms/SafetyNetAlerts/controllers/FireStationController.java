@@ -64,7 +64,7 @@ public class FireStationController {
     @GetMapping(value = "/phoneAlert")
     public Map<String, List<String>> getPersonsPhoneForStation(int stationNumber) {
         Map<String, List<String>> phoneNumbers = null;
-        logger.info("http://localhost:8080/phoneAlert?stationNumber" + stationNumber);
+        logger.info("http://localhost:8080/phoneAlert?firestation" + stationNumber);
         try {
             phoneNumbers = filterService.getPhoneNumbersForStation(stationNumber);
             logger.info(String.valueOf(phoneNumbers));
