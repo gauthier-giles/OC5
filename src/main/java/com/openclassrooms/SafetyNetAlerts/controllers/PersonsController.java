@@ -33,7 +33,7 @@ public class PersonsController {
 
     @GetMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getPerson() {
-        logger.info("http://localhost:8080/person");
+        logger.info("GET http://localhost:8080/person");
         String persons = null;
         try {
             persons = mapper.writer(personFilter).withDefaultPrettyPrinter().writeValueAsString(personDAO.getPersons());
@@ -49,7 +49,7 @@ public class PersonsController {
      */
     @GetMapping(value = "/communityEmail")
     public Map<String, List<String>> personsEmailAtCity(String city) {
-        logger.info("http://localhost:8080/communityEmail?city=" + city);
+        logger.info("GET http://localhost:8080/communityEmail?city=" + city);
         Map<String, List<String>> personEmails = null;
         try {
             personEmails = filterService.getPersonsEmailInCity(city);
@@ -65,7 +65,7 @@ public class PersonsController {
      */
     @GetMapping(value = "/personInfo")
     public List<JsonNode> getPersonInfo(String firstName, String lastName) {
-        logger.info("http://localhost:8080/personInfo?firstName=" + firstName + "&lastName=" + lastName);
+        logger.info("GET http://localhost:8080/personInfo?firstName=" + firstName + "&lastName=" + lastName);
         List<JsonNode> persons = null;
         try {
             persons = filterService.getPersonFiltered(firstName, lastName);
@@ -81,7 +81,7 @@ public class PersonsController {
     */
     @GetMapping(value = "/childAlert")
     public Map<String, List> getChildsAtAddress(String address) {
-        logger.info("http://localhost:8080/childAlert?address=" + address);
+        logger.info("GET http://localhost:8080/childAlert?address=" + address);
         Map<String, List> childs = null;
         try {
             childs = filterService.countChildsAtAddress(address);
@@ -97,7 +97,7 @@ public class PersonsController {
      */
     @GetMapping(value = "/fire")
     public Map<String, Object> getPersonsAndMedicalRecordsAndStationNumberOfAddress(String address) {
-        logger.info("http://localhost:8080/fire?address=" + address);
+        logger.info("GET http://localhost:8080/fire?address=" + address);
         Map<String, Object> personsAndRecords = null;
         try {
             personsAndRecords = filterService.getPersonsMedicalRecordsAndStationNumberOfAddress(address);
@@ -110,7 +110,7 @@ public class PersonsController {
 
     @DeleteMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public String removePerson(@RequestBody Persons person) {
-        logger.info("http://localhost:8080/person");
+        logger.info("DELETE http://localhost:8080/person");
         logger.info("body: " + person);
         String personToDelete = null;
         try {
@@ -125,7 +125,7 @@ public class PersonsController {
 
     @PostMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public String addPerson(@RequestBody Persons person) {
-        logger.info("http://localhost:8080/person");
+        logger.info("POST http://localhost:8080/person");
         logger.info("body: " + person);
         String personToAdd = null;
         try {
@@ -139,12 +139,16 @@ public class PersonsController {
 
     @PutMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public String updatePerson(@RequestBody Persons person) {
-        logger.info("http://localhost:8080/person");
+        logger.info("PUT http://localhost:8080/person");
         logger.info("body: " + person);
         String personToModify = null;
         try {
-            personToModify = mapper.writer(personFilter).withDefaultPrettyPrinter().writeValueAsString(personDAO.addPerson(person));
-            logger.info(personToModify);
+            List<JsonNode> personFiltered = filterService.getPersonFiltered(person.getFirstName(), person.getLastName());
+            if (personFiltered != null){
+                personToModify = mapper.writer(personFilter).withDefaultPrettyPrinter().writeValueAsString(personDAO.addPerson(person));
+                logger.info(personToModify);
+            }
+            //TODO revoir la gestion des exceptions
         }   catch (Exception e) {
             logger.error("Request failed. Exception error is: " + e);
         }

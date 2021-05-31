@@ -47,7 +47,7 @@ public class FireStationController {
     @GetMapping(value = "/flood/stations")
     public Map<String, List<JsonNode>> personsAndMedicalRecordPerAddressPerStation(String[] stations) {
         String parameters = String.join("&", stations);
-        logger.info("http://localhost:8080/flood/stations?" + parameters);
+        logger.info("GET http://localhost:8080/flood/stations?" + parameters);
         Map<String, List<JsonNode>> personsAndMedicalRecord = null;
         try {
             personsAndMedicalRecord = filterService.getPersonsAndMedicalRecordPerAddressPerStation(stations);
@@ -55,6 +55,7 @@ public class FireStationController {
         } catch(Exception e) {
             logger.error("Request failed. Exception error is: " + e);
         }
+        logger.info("query result : "+personsAndMedicalRecord);
         return personsAndMedicalRecord;
     }
 

@@ -9,7 +9,7 @@ import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
     public class SafetyNetConfiguration {
 
         @Bean
-        public HttpTraceRepository htttpTraceRepository()
+        public HttpTraceRepository httpTraceRepository()
         {
             return new InMemoryHttpTraceRepository();
         }

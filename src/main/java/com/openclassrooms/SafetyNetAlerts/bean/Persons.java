@@ -23,5 +23,7 @@ public class Persons {
     String phone;
     String email;
 
+    public Persons() { //Default constructor
+    }
 }
 

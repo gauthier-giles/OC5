@@ -13,5 +13,8 @@ public class FireStation {
         @NonNull
         String address;
         String station;
+
+        public FireStation() { //Default constructor
+        }
 }
     

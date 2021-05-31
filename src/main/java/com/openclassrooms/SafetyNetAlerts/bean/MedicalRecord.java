@@ -22,5 +22,8 @@ public class MedicalRecord {
     String birthdate;
     List<String> medications;
     List<String> allergies;
+
+    public MedicalRecord() { //Default constructor
     }
+}
 
