@@ -234,14 +234,14 @@ public class FilterDAO {
         return objectsJson;
     }
 
-    static JsonNode filterObjectInJson(Object objectToFilter, FilterProvider filter) throws JsonProcessingException {
+    public static JsonNode filterObjectInJson(Object objectToFilter, FilterProvider filter) throws JsonProcessingException {
         String objectJson = mapper.writer(filter)
                 .withDefaultPrettyPrinter()
                 .writeValueAsString(objectToFilter);
         return mapper.readTree(objectJson);
     }
 
-    static List<Persons> getPersonsAtAddress(String address) {
+    public static List<Persons> getPersonsAtAddress(String address) {
         List<Persons> personAtAddress = new ArrayList<>();
         try {
             personAtAddress = persons.values()
@@ -257,7 +257,7 @@ public class FilterDAO {
         return personAtAddress;
     }
 
-    static List<String> getAddressesAtStation(int stationNumber) {
+    public static List<String> getAddressesAtStation(int stationNumber) {
         return fireStations.values()
                 .stream()
                 .filter(station -> Integer.parseInt(station.getStation()) == stationNumber)
@@ -266,7 +266,7 @@ public class FilterDAO {
     }
 
 
-    static int calculateAge(String birthDay) throws ParseException {
+    public static int calculateAge(String birthDay) throws ParseException {
         SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.FRANCE);
         LocalDate birthDate = df.parse(birthDay).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String todayString = df.format(new Date());
