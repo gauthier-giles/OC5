@@ -109,17 +109,17 @@ public class FilterDAOTests {
         Assertions.assertThat(personsEmailInCity.get("Culver")).contains("jaboyd@email.com");
     }
 
-//    @Test
-//    public void getPersonFilteredByFullNameTest() throws JsonProcessingException, ParseException {
-//        // GIVEN
-//        JsonNode johnJson = mapper.readTree("{\"address\":\"20 rue DuTest\",\"email\":\"jaboyd@email.com\",\"John Boyd\":{\"medications\":[\"aznol:350mg\",\"hydrapermazol:100mg\"],\"allergies\":[\"nillacilan\"]},\"âge: \":36}");
-//
-//        // WHEN
-//        List<JsonNode> johnFiltered = filterDAO.getPersonFiltered("John", "Boyd");
-//
-//        // THEN
-//        Assertions.assertThat(johnFiltered).contains(johnJson);
-//    }
+    @Test
+    public void getPersonFilteredByFullNameTest() throws JsonProcessingException, ParseException {
+        // GIVEN
+        JsonNode johnJson = mapper.readTree("{\"address\":\"20 rue DuTest\",\"email\":\"jaboyd@email.com\",\"John Boyd\":{\"medications\":[\"aznol:350mg\",\"hydrapermazol:100mg\"],\"allergies\":[\"nillacilan\"]},\"âge: \":37}");
+
+        // WHEN
+        List<JsonNode> johnFiltered = filterDAO.getPersonFiltered("John", "Boyd");
+
+        // THEN
+        Assertions.assertThat(johnFiltered).contains(johnJson);
+    }
 
     @Test
     public void countAdultAndChildPerStationTest() throws ParseException, JsonProcessingException {
@@ -136,20 +136,20 @@ public class FilterDAOTests {
 
     }
 
-//    @Test
-//    public void countChildAtAddressTest() throws ParseException, JsonProcessingException {
-//        // GIVEN
-//        JsonNode jacobJson = mapper.readTree("{\"firstName\":\"Jacob\",\"lastName\":\"Boyd\",\"age\":31}");
-//        JsonNode tenleyJson = mapper.readTree("{\"firstName\":\"Tenley\",\"lastName\":\"Boyd\",\"age\":8}");
-//
-//        // WHEN
-//        Map<String, List> childsAtAddress = filterDAO.countChildsAtAddress("1509 Culver St");
-//        logger.info("childs at address: " + String.valueOf(childsAtAddress));
-//
-//        // THEN
-//        Assertions.assertThat(childsAtAddress.get("otherMembers")).containsExactly(jacobJson);
-//        Assertions.assertThat(childsAtAddress.get("childsAtAddress")).containsExactly(tenleyJson);
-//    }
+    @Test
+    public void countChildAtAddressTest() throws ParseException, JsonProcessingException {
+        // GIVEN
+        JsonNode jacobJson = mapper.readTree("{\"firstName\":\"Jacob\",\"lastName\":\"Boyd\",\"age\":32}");
+        JsonNode tenleyJson = mapper.readTree("{\"firstName\":\"Tenley\",\"lastName\":\"Boyd\",\"age\":9}");
+
+        // WHEN
+        Map<String, List> childsAtAddress = filterDAO.countChildsAtAddress("1509 Culver St");
+        logger.info("childs at address: " + String.valueOf(childsAtAddress));
+
+        // THEN
+        Assertions.assertThat(childsAtAddress.get("otherMembers")).containsExactly(jacobJson);
+        Assertions.assertThat(childsAtAddress.get("childsAtAddress")).containsExactly(tenleyJson);
+    }
 
     @Test
     public void getPhoneNumbersForStationTest() throws JsonProcessingException {
@@ -174,25 +174,25 @@ public class FilterDAOTests {
 //        Map<String, Object> personsMedicalRecordsAndStationNumber = filterDAO.getPersonsMedicalRecordsAndStationNumberOfAddress("1509 Culver St");
 //
 //        // THEN
-//        Assertions.assertThat((List) personsMedicalRecordsAndStationNumber.get("people living at: ")).contains(tenleyJson, jacobJson);
+//        Assertions.assertThat((List) personsMedicalRecordsAndStationNumber.get("people living at: ")).contains(tenleyJson, jacobJson); // a voir
 //        Assertions.assertThat(personsMedicalRecordsAndStationNumber.get("FireStation number: ")).isEqualTo("3");
 //    }
 
-//    @Test
-//    public void getPersonsAndMedicalRecordPerAddressPerStationTest() throws JsonProcessingException, ParseException {
-//        // GIVEN
-//        String[] myStringArray = {"1", "3"};
-//        JsonNode jacobJson = mapper.readTree("{\"firstName\":\"Jacob\",\"lastName\":\"Boyd\",\"phone\":\"841-874-6513\",\"Jacob Boyd\":{\"medications\":[\"pharmacol:5000mg\",\"terazine:10mg\",\"noznazol:250mg\"],\"allergies\":[]},\"âge: \":31}");
-//        JsonNode tenleyJson = mapper.readTree("{\"firstName\":\"Tenley\",\"lastName\":\"Boyd\",\"phone\":\"841-874-6512\",\"Tenley Boyd\":{\"medications\":[],\"allergies\":[\"peanut\"]},\"âge: \":8}");
-//        JsonNode johnJson = mapper.readTree("{\"firstName\":\"John\",\"lastName\":\"Boyd\",\"phone\":\"841-874-6512\",\"John Boyd\":{\"medications\":[\"aznol:350mg\",\"hydrapermazol:100mg\"],\"allergies\":[\"nillacilan\"]},\"âge: \":36}]}");
-//
-//        // WHEN
-//        Map<String, List<JsonNode>> personsAndMedicalRecordPerAddress = filterDAO.getPersonsAndMedicalRecordPerAddressPerStation(myStringArray);
-//
-//        // THEN
-//        Assertions.assertThat(personsAndMedicalRecordPerAddress.get("1509 Culver St")).contains(jacobJson, tenleyJson);
-//        Assertions.assertThat(personsAndMedicalRecordPerAddress.get("20 rue DuTest")).contains(johnJson);
-//    }
+    @Test
+    public void getPersonsAndMedicalRecordPerAddressPerStationTest() throws JsonProcessingException, ParseException {
+        // GIVEN
+        String[] myStringArray = {"1", "3"};
+        JsonNode jacobJson = mapper.readTree("{\"firstName\":\"Jacob\",\"lastName\":\"Boyd\",\"phone\":\"841-874-6513\",\"Jacob Boyd\":{\"medications\":[\"pharmacol:5000mg\",\"terazine:10mg\",\"noznazol:250mg\"],\"allergies\":[]},\"âge: \":32}");
+        JsonNode tenleyJson = mapper.readTree("{\"firstName\":\"Tenley\",\"lastName\":\"Boyd\",\"phone\":\"841-874-6512\",\"Tenley Boyd\":{\"medications\":[],\"allergies\":[\"peanut\"]},\"âge: \":9}");
+        JsonNode johnJson = mapper.readTree("{\"firstName\":\"John\",\"lastName\":\"Boyd\",\"phone\":\"841-874-6512\",\"John Boyd\":{\"medications\":[\"aznol:350mg\",\"hydrapermazol:100mg\"],\"allergies\":[\"nillacilan\"]},\"âge: \":37}]}");
+
+        // WHEN
+        Map<String, List<JsonNode>> personsAndMedicalRecordPerAddress = filterDAO.getPersonsAndMedicalRecordPerAddressPerStation(myStringArray);
+
+        // THEN
+        Assertions.assertThat(personsAndMedicalRecordPerAddress.get("1509 Culver St")).contains(jacobJson, tenleyJson);
+        Assertions.assertThat(personsAndMedicalRecordPerAddress.get("20 rue DuTest")).contains(johnJson);
+    }
 
     @Test
     public void calculateAgeTest() throws ParseException {

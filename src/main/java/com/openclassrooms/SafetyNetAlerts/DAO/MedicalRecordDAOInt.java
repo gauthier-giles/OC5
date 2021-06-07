@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.List;
 
+
 public interface MedicalRecordDAOInt {
     List<MedicalRecord> updateMedicalRecord(MedicalRecord medicalRecord) throws IOException, ParseException;
     List<MedicalRecord> addMedicalRecord(MedicalRecord medicalRecord) throws IOException, ParseException;

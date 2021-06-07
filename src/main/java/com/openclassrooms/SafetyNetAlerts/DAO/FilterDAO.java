@@ -78,13 +78,13 @@ public class FilterDAO {
         HashMap<String, Object> adultAndChildPerStation = new HashMap<>();
         // Get address covered by a station
         List<String> addresses = getAddressesAtStation(stationNumber);
-        logger.info("Adresse(s) récuérée(s): " + addresses);
+        logger.info("Adress : " + addresses);
         //Rajouter une exception et logger si addresses est vide?
         List<Persons> personsAtAdresses = this.persons.values()
                 .stream()
                 .filter(person -> addresses.contains(person.getAddress()))
                 .collect(Collectors.toList());
-        logger.info("Nombre de personnes aux adresses: " + personsAtAdresses.size());
+        logger.info("Number of people at adress: " + personsAtAdresses.size());
 
         List<Persons> personsOverEighteen = new ArrayList<>();
         List<Persons> personsUnderEighteen = new ArrayList<>();
