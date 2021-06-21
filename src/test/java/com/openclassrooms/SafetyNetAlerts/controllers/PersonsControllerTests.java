@@ -72,6 +72,7 @@ public class PersonsControllerTests {
                 .contentType("application/json")
                 .content("{ \"firstName\" : \"Gauthier\", \"lastName\" : \"GILES\", \"birthdate\" : \"08/01/1985\", \"medications\" : [\"NADA\"], \"allergies\" : [ \"NADA\" ] }"))
                 .andExpect(status().is2xxSuccessful());
+        System.out.println("CCCCCCCCCC");
     }
 
 }

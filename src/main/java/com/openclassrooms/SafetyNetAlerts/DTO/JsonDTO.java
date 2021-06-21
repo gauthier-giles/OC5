@@ -12,7 +12,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.io.FileNotFoundException;
@@ -22,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@Primary
 @Repository
 public class JsonDTO {
 
@@ -32,7 +34,7 @@ public class JsonDTO {
     private static String pathToFile = "data.json";
     private JSONObject jsonObject;
 
-
+    @Qualifier
     @Bean // a voir sa pose problème!!!
     public static JsonDTO getInstance(){
         if(JsonDTO.jsonDTOInstance== null) {

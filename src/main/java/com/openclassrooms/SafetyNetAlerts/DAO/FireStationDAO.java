@@ -23,9 +23,9 @@ public class FireStationDAO implements FireStationDAOInt{
     public FireStationDAO(JsonDTO jsonFileDTO){
         try {
             this.firestations = jsonFileDTO.getFireStations();
-            logger.info("Classe de gestion des personnes initialisée");
+            logger.info("FireStations class initialized");
         } catch (NullPointerException | IOException e) {
-            logger.error("echec pour initialiser FirestationsDAOImpl", e);
+            logger.error("failed to initialized FireStations", e);
         }
     }
 
@@ -60,7 +60,7 @@ public class FireStationDAO implements FireStationDAOInt{
             logger.info(stationToDelete.getAddress() +  "is deleted");
             logger.info("now there is " + firestations.size() + " Firestations");
         } else {
-            logger.error("no Firestation existed in this address" + stationToDelete.getAddress());
+            logger.error("no FireStation existed in this address" + stationToDelete.getAddress());
         }
         return new ArrayList<>(this.firestations.values());
     }

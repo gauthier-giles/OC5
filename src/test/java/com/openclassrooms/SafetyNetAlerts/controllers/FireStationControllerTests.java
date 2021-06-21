@@ -69,7 +69,8 @@ public class FireStationControllerTests {
                 .contentType("application/json")
                 .content(mapper.writeValueAsString(stationToModify)))
                 .andExpect(status().is4xxClientError());
-    } // Client error due to default constructor
 
+        System.out.println("AAAAAAAAAAA");
+    } // Client error due to default constructor
 
 }

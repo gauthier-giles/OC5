@@ -50,6 +50,7 @@ public class MedicalRecordsControllerTests {
                 .content("{ \"firstName\" : \"Gauthier\", \"lastName\" : \"GILES\"," +
                         " \"birthdate\" : \"01/01/1985\", \"medications\" : [\"Nada\"], \"allergies\" : [ \"RIEN\" ] }"))
                 .andExpect(status().is2xxSuccessful());
+        System.out.println("BBBBBBBBBBB");
     }
 
 

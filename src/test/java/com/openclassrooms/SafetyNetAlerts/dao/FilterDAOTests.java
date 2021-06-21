@@ -1,4 +1,4 @@
-package com.openclassrooms.SafetyNetAlerts.DaO;
+package com.openclassrooms.SafetyNetAlerts.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,7 +13,8 @@ import com.openclassrooms.SafetyNetAlerts.bean.MedicalRecord;
 import com.openclassrooms.SafetyNetAlerts.bean.Persons;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
-import org.junit.Test;
+//import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -36,6 +37,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
+
 
 public class FilterDAOTests {
 
@@ -164,19 +166,20 @@ public class FilterDAOTests {
         Assertions.assertThat(phoneNumbersAtStation.get("Firestation n°3")).contains(jacobPhone, tenleyPhone);
     }
 
-//    @Test
-//    public void getPersonsMedicalRecordsAndStationNumberOfAddressTest() throws JsonProcessingException {
-//        // GIVEN
-//        JsonNode tenleyJson = mapper.readTree("{\"phone\":\"841-874-6512\",\"Tenley Boyd\":{\"medications\":[],\"allergies\":[\"peanut\"]}}");
-//        JsonNode jacobJson = mapper.readTree("{\"phone\":\"841-874-6513\",\"Jacob Boyd\":{\"medications\":[\"pharmacol:5000mg\",\"terazine:10mg\",\"noznazol:250mg\"],\"allergies\":[]}}");
-//
-//        // WHEN
-//        Map<String, Object> personsMedicalRecordsAndStationNumber = filterDAO.getPersonsMedicalRecordsAndStationNumberOfAddress("1509 Culver St");
-//
-//        // THEN
-//        Assertions.assertThat((List) personsMedicalRecordsAndStationNumber.get("people living at: ")).contains(tenleyJson, jacobJson); // a voir
-//        Assertions.assertThat(personsMedicalRecordsAndStationNumber.get("FireStation number: ")).isEqualTo("3");
-//    }
+    @Test
+    public void getPersonsMedicalRecordsAndStationNumberOfAddressTest() throws JsonProcessingException {
+        // GIVEN
+        JsonNode tenleyJson = mapper.readTree("{\"phone\":\"841-874-6512\",\"Tenley Boyd\":{\"medications\":[],\"allergies\":[\"peanut\"]}}");
+        JsonNode jacobJson = mapper.readTree("{\"phone\":\"841-874-6513\",\"Jacob Boyd\":{\"medications\":[\"pharmacol:5000mg\",\"terazine:10mg\",\"noznazol:250mg\"],\"allergies\":[]}}");
+
+        // WHEN
+        Map<String, Object> personsMedicalRecordsAndStationNumber = filterDAO.getPersonsMedicalRecordsAndStationNumberOfAddress("1509 Culver St");
+
+        // THEN
+        Assertions.assertThat(((List) personsMedicalRecordsAndStationNumber.get("people living in this address : ")).contains(tenleyJson));
+        Assertions.assertThat(((List) personsMedicalRecordsAndStationNumber.get("people living in this address : ")).contains(jacobJson));// a voir
+        Assertions.assertThat(personsMedicalRecordsAndStationNumber.get("FireStation number: ")).isEqualTo("3");
+    }
 
     @Test
     public void getPersonsAndMedicalRecordPerAddressPerStationTest() throws JsonProcessingException, ParseException {
@@ -207,6 +210,7 @@ public class FilterDAOTests {
 
         // THEN
         Assertions.assertThat(age).isEqualTo(Period.between(birthDate, today).getYears());
+        System.out.println("==========TTTTTT=========");
     }
 
     @Test
