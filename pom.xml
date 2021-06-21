@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.7.2</version>
+			<version>5.3.2</version>
 			<scope>test</scope>
 		</dependency> <!-- junit-jupiter-engine -->
         <dependency>
@@ -91,24 +91,6 @@
 			<version>0.8.5</version>
 			<type>maven-plugin</type>
 		</dependency> <!-- jacoco-maven-plugin -->
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<version>1.7.2</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<version>5.7.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-assembly-plugin</artifactId>
-			<version>3.3.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -171,6 +153,7 @@
 				<version>3.0.0</version>
 			</plugin> <!-- maven-project-info-reports-plugin -->
 		</plugins>
+
 	</build>
 
 	<reporting>
@@ -186,5 +169,7 @@
 			</plugin> <!-- spring-boot-maven-plugin -->
 		</plugins>
 	</reporting>
+
+
 
 </project>
