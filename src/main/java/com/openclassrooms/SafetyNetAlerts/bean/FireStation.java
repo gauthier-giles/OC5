@@ -4,8 +4,8 @@ import org.springframework.lang.NonNull;
 
 public class FireStation {
         @NonNull
-        String address;
-        String station;
+        private String address;
+        private String station;
 
         @NonNull
         public String getAddress() {

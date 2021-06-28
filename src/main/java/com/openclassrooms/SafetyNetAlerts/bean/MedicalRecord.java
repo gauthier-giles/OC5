@@ -7,13 +7,13 @@ import java.util.List;
 @JsonFilter("medicalFilter")
 public class MedicalRecord {
     @NonNull
-    String firstName;
+    private String firstName;
     @NonNull
-    String lastName;
+    private String lastName;
 
-    String birthdate;
-    List<String> medications;
-    List<String> allergies;
+    private String birthdate;
+    private List<String> medications;
+    private List<String> allergies;
 
     @NonNull
     public String getFirstName() {

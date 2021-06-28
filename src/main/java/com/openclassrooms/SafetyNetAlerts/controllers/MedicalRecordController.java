@@ -19,7 +19,7 @@ public class MedicalRecordController {
     private static FilterProvider medicalFilter = new SimpleFilterProvider().addFilter("medicalFilter", SimpleBeanPropertyFilter.serializeAll());
 
     @Autowired
-    MedicalRecordDAO medicalRecordDAO;
+    private MedicalRecordDAO medicalRecordDAO;
 
 
 

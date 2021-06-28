@@ -17,10 +17,10 @@ public class FireStationController {
     private static Logger logger = LoggerFactory.getLogger(FireStationController.class);
 
     @Autowired
-    FireStationDAO firestationDAO;
+    private FireStationDAO firestationDAO;
 
     @Autowired
-    FilterDAO filterService;
+    private FilterDAO filterService;
 
 
     /**

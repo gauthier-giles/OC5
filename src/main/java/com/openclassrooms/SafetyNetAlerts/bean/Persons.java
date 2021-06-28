@@ -6,15 +6,15 @@ import org.springframework.lang.NonNull;
 @JsonFilter("personFilter")
 public class Persons {
     @NonNull
-    String firstName;
+    private String firstName;
     @NonNull
-    String lastName;
+    private String lastName;
 
-    String address;
-    String city;
-    String zip;
-    String phone;
-    String email;
+    private String address;
+    private String city;
+    private String zip;
+    private String phone;
+    private String email;
 
     @NonNull
     public String getFirstName() {

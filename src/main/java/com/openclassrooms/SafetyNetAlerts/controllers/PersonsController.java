@@ -26,10 +26,10 @@ public class PersonsController {
     private static FilterProvider personFilter = new SimpleFilterProvider().addFilter("personFilter", SimpleBeanPropertyFilter.serializeAll());
 
     @Autowired
-    PersonsDAO personDAO;
+    private PersonsDAO personDAO;
 
     @Autowired
-    FilterDAO filterService;
+    private FilterDAO filterService;
 
     @GetMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getPerson() {

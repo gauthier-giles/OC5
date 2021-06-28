@@ -31,10 +31,10 @@ public class FilterDAO {
     private static Logger logger = LoggerFactory.getLogger(PersonsDAO.class);
 
 
-    static Map<String, Persons> persons;
-    static Map<String, MedicalRecord> medicalRecords;
-    static Map<String, FireStation> fireStations;
-    static ObjectMapper mapper = new ObjectMapper();
+    private static Map<String, Persons> persons;
+    private static Map<String, MedicalRecord> medicalRecords;
+    private static Map<String, FireStation> fireStations;
+    private static ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     public FilterDAO(JsonDTO jsonDTO) throws IOException {
