@@ -33,7 +33,7 @@ public class MedicalRecordController {
                     writeValueAsString(medicalRecordDAO.getMedicalRecords());
             logger.info(medicalRecord);
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to get the medical record. Exception error is: " + e);
         }
         return medicalRecord;
     }
@@ -49,7 +49,7 @@ public class MedicalRecordController {
                     writeValueAsString(medicalRecordDAO.deleteMedicalRecord(medicalRecord));
             logger.info(medicalRecordLeft);
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to delete the medical record. Exception error is: " + e);
         }
         return medicalRecordLeft;
     }
@@ -64,7 +64,7 @@ public class MedicalRecordController {
                     writeValueAsString(medicalRecordDAO.addMedicalRecord(medicalRecord));
             logger.info(allMedicalRecord);
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to add the medical record. Exception error is: " + e);
         }
         return allMedicalRecord;
     }
@@ -80,7 +80,7 @@ public class MedicalRecordController {
                     writeValueAsString(medicalRecordDAO.updateMedicalRecord(medicalRecord));
             logger.info(allMedicalRecord);
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to update the medical record. Exception error is: " + e);
         }
         return allMedicalRecord;
     }

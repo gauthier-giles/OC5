@@ -39,7 +39,7 @@ public class PersonsController {
             persons = mapper.writer(personFilter).withDefaultPrettyPrinter().writeValueAsString(personDAO.getPersons());
             logger.info(persons);
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to show person's list. Exception error is: " + e);
         }
         return persons;
     }
@@ -55,7 +55,7 @@ public class PersonsController {
             personEmails = filterService.getPersonsEmailInCity(city);
             logger.info(String.valueOf(personEmails));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to show person's email's list. Exception error is: " + e);
         }
         return personEmails;
     }
@@ -71,7 +71,7 @@ public class PersonsController {
             persons = filterService.getPersonFiltered(firstName, lastName);
             logger.info(String.valueOf(persons));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to return the person name: " +firstName+" "+ lastName+". Exception error is: " + e);
         }
         return persons;
     }
@@ -87,7 +87,7 @@ public class PersonsController {
             childs = filterService.countChildsAtAddress(address);
             logger.info(String.valueOf(childs));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to return child's list. Exception error is: " + e);
         }
         return childs;
     }
@@ -103,7 +103,7 @@ public class PersonsController {
             personsAndRecords = filterService.getPersonsMedicalRecordsAndStationNumberOfAddress(address);
             logger.info(String.valueOf(personsAndRecords));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to return people living in this adress. Exception error is: " + e);
         }
         return personsAndRecords;
     }
@@ -117,7 +117,7 @@ public class PersonsController {
             personToDelete = mapper.writer(personFilter).withDefaultPrettyPrinter().writeValueAsString(personDAO.deletePerson(person));
             logger.info(personToDelete);
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to delete the person. Exception error is: " + e);
         }
         return personToDelete;
     }
@@ -132,7 +132,7 @@ public class PersonsController {
             personToAdd = mapper.writer(personFilter).withDefaultPrettyPrinter().writeValueAsString(personDAO.addPerson(person));
             logger.info(personToAdd);
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to add the new person. Exception error is: " + e);
         }
         return personToAdd;
     }
@@ -148,9 +148,8 @@ public class PersonsController {
                 personToModify = mapper.writer(personFilter).withDefaultPrettyPrinter().writeValueAsString(personDAO.addPerson(person));
                 logger.info(personToModify);
             }
-            //TODO revoir la gestion des exceptions
         }   catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to update the person. Exception error is: " + e);
         }
         return personToModify;
     }

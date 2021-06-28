@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -52,11 +52,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency> <!-- spring-boot-starter-actuator -->
-<!--		<dependency>-->
-<!--			<groupId>org.projectlombok</groupId>-->
-<!--			<artifactId>lombok</artifactId>-->
-<!--			<optional>true</optional>-->
-<!--		</dependency> &lt;!&ndash; lombok &ndash;&gt;-->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
@@ -69,12 +64,12 @@
 			<version>5.3.2</version>
 			<scope>test</scope>
 		</dependency> <!-- junit-jupiter-engine -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.4.6</version>
-            <scope>test</scope>
-        </dependency> <!-- mockito-core -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.4.6</version>
+			<scope>test</scope>
+		</dependency> <!-- mockito-core -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -83,7 +78,7 @@
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-surefire-plugin</artifactId>
-			<version>2.22.0</version>
+			<version>2.22.2</version>
 		</dependency> <!-- maven-surefire-plugin -->
 		<dependency>
 			<groupId>org.jacoco</groupId>
@@ -91,6 +86,23 @@
 			<version>0.8.5</version>
 			<type>maven-plugin</type>
 		</dependency> <!-- jacoco-maven-plugin -->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>1.7.2</version>
+			<scope>test</scope>
+		</dependency> <!-- junit-platform-launcher -->
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>5.7.2</version>
+			<scope>test</scope>
+		</dependency> <!-- junit-vintage-engine -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<version>3.3.0</version>
+		</dependency> <!-- maven-assembly-plugin -->
 	</dependencies>
 
 	<build>
@@ -141,6 +153,20 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin> <!-- jacoco-maven-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -153,7 +179,6 @@
 				<version>3.0.0</version>
 			</plugin> <!-- maven-project-info-reports-plugin -->
 		</plugins>
-
 	</build>
 
 	<reporting>
@@ -169,7 +194,5 @@
 			</plugin> <!-- spring-boot-maven-plugin -->
 		</plugins>
 	</reporting>
-
-
 
 </project>

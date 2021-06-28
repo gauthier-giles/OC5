@@ -14,7 +14,6 @@ import java.util.Map;
 
 @RestController
 public class FireStationController {
-
     private static Logger logger = LoggerFactory.getLogger(FireStationController.class);
 
     @Autowired
@@ -25,8 +24,9 @@ public class FireStationController {
 
 
     /**
-    * example : http://localhost:8080/firestation?stationNumber=1
-    */
+     * obtain the list of FireStations
+     * example : http://localhost:8080/firestation?stationNumber=1
+     */
     @GetMapping(value = "/firestation")
     public Map<String, Object> countAdultAndChildPerStation(int stationNumber) {
         logger.info("http://localhost:8080/firestation?stationNumber=" + stationNumber);
@@ -35,12 +35,13 @@ public class FireStationController {
             adultAndChildPerStation = filterService.countAdultAndChildPerStation(stationNumber);
             logger.info(String.valueOf(adultAndChildPerStation));
         } catch(Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("impossible to get the firestations. Exception error is: " + e);
         }
         return adultAndChildPerStation;
     }
 
     /**
+     * obtain the list people with their medical records by FireStations
     * example : http://localhost:8080/flood/stations?stations=1
     * example : ?stations=1&stations=2
     */
@@ -53,7 +54,7 @@ public class FireStationController {
             personsAndMedicalRecord = filterService.getPersonsAndMedicalRecordPerAddressPerStation(stations);
             logger.info(String.valueOf(personsAndMedicalRecord));
         } catch(Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("impossible to get medical records by firestations. Exception error is: " + e);
         }
         logger.info("query result : "+personsAndMedicalRecord);
         return personsAndMedicalRecord;
@@ -61,6 +62,7 @@ public class FireStationController {
 
     /**
      * example : http://localhost:8080/phoneAlert?stationNumber=2
+     * return the houses served by firestations
      */
     @GetMapping(value = "/phoneAlert")
     public Map<String, List<String>> getPersonsPhoneForStation(int stationNumber) {
@@ -70,12 +72,16 @@ public class FireStationController {
             phoneNumbers = filterService.getPhoneNumbersForStation(stationNumber);
             logger.info(String.valueOf(phoneNumbers));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to show houses served by firestations. Exception error is: " + e);
         }
         return phoneNumbers;
     }
 
-
+    /**
+     * Delete an existing FireStation
+     * @param stationToDelete
+     * @return
+     */
     @DeleteMapping("/firestation")
     public List<FireStation> removeFireStation(@RequestBody FireStation stationToDelete) {
         List<FireStation> stationsAfterDeleting = null;
@@ -85,12 +91,16 @@ public class FireStationController {
             stationsAfterDeleting = firestationDAO.deleteFireStation(stationToDelete);
             logger.info(String.valueOf(stationsAfterDeleting));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to delete the firestation. Exception error is: " + e);
         }
         return stationsAfterDeleting;
     }
 
-
+    /**
+     * add a new FireStation
+     * @param stationToAdd
+     * @return
+     */
     @PostMapping("/fireStation")
     public List<FireStation> addFireStation(@RequestBody FireStation stationToAdd) {
         List<FireStation> stationsAfterAdding = null;
@@ -100,12 +110,16 @@ public class FireStationController {
             stationsAfterAdding = firestationDAO.deleteFireStation(stationToAdd);
             logger.info(String.valueOf(stationsAfterAdding));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to add the new firestation. Exception error is: " + e);
         }
         return stationsAfterAdding;
     }
 
-
+    /**
+     * update an existing FireStation
+     * @param stationToUpdate
+     * @return
+     */
     @PutMapping("/firestation")
     public List<FireStation> updateFirestation(@RequestBody FireStation stationToUpdate) {
         List<FireStation> stationsAfterModification = null;
@@ -115,7 +129,7 @@ public class FireStationController {
             stationsAfterModification = firestationDAO.deleteFireStation(stationToUpdate);
             logger.info(String.valueOf(stationsAfterModification));
         } catch (Exception e) {
-            logger.error("Request failed. Exception error is: " + e);
+            logger.error("failed to update the firestation. Exception error is: " + e);
         }
         return stationsAfterModification;
     }

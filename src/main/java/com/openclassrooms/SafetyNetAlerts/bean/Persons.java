@@ -1,12 +1,8 @@
 package com.openclassrooms.SafetyNetAlerts.bean;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
 import org.springframework.lang.NonNull;
 
-//@Getter
-//@Setter
-//@ToString
 @JsonFilter("personFilter")
 public class Persons {
     @NonNull
@@ -19,7 +15,6 @@ public class Persons {
     String zip;
     String phone;
     String email;
-
 
     @NonNull
     public String getFirstName() {
@@ -76,16 +71,6 @@ public class Persons {
     }
 
     public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Persons(@NonNull String firstName, @NonNull String lastName, String address, String city, String zip, String phone, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.zip = zip;
-        this.phone = phone;
         this.email = email;
     }
 

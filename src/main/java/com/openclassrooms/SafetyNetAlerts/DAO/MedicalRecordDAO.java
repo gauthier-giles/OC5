@@ -68,7 +68,7 @@ public class MedicalRecordDAO implements MedicalRecordDAOInt{
                 && recordToDelete.getLastName().equals(person.getLastName()));
         if (deleted) {
             logger.info(recordToDelete.getFirstName() + " " + recordToDelete.getLastName() + " is delete");
-            logger.info("now there is " + medicalRecords.size() + " personns");
+            logger.info("now there is " + medicalRecords.size() + " persons");
         } else {
             logger.error("nobody knows as " + recordToDelete.getFirstName() + " " + recordToDelete.getLastName());
         }

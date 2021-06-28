@@ -43,7 +43,7 @@ public class JsonDTO {
         return jsonDTOInstance;
     }
 
-    private JsonDTO(){
+    public JsonDTO(){ //private
         try{
             FileReader reader = new FileReader(pathToFile);
             JSONParser jsonParser = new JSONParser();
@@ -67,7 +67,7 @@ public class JsonDTO {
             String personJson = mapper.writeValueAsString(person);
             persons.put(person.get("firstName").asText() + " " + person.get("lastname"), mapper.readValue(personJson, Persons.class));
         }
-        logger.info("there is" + persons.size() + "persons");
+        logger.info("there is " + persons.size() + " persons");
         if (persons.size() > 0) {
             return persons;
         }else{
@@ -85,7 +85,7 @@ public class JsonDTO {
             String firestationJson = mapper.writeValueAsString(firestation);
             firestations.put(firestation.get("address").asText(), mapper.readValue(firestationJson, FireStation.class));
         }
-        logger.info("There is" + firestations.size() + " FireStations");
+        logger.info("There is " + firestations.size() + " FireStations");
         if (firestations.size() > 0) {
             return firestations;
         }else{
@@ -110,7 +110,7 @@ public class JsonDTO {
             medicalRecord.setMedications(reader.readValue(medicalRecordJson.get("medications")));
             medicalRecords.put(medicalRecordJson.get("firstName").asText() + " " + medicalRecordJson.get("lastName").asText(),medicalRecord);
         }
-        logger.info("there is" + medicalRecords.size() + "medical record");
+        logger.info("there is " + medicalRecords.size() + " medical record(s)");
         if (medicalRecords.size() > 0) {
             return medicalRecords;
         }else{

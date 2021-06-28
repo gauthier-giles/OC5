@@ -57,7 +57,7 @@ public class PersonsDAO implements PersonsDAOInt {
         logger.info(String.valueOf(person.getFirstName() + " " + person.getLastName()));
         try {
             this.persons.put(person.getFirstName() + " " + person.getLastName(), person);
-            logger.info(person.getFirstName() + " " + person.getLastName() + "is added");
+            logger.info(person.getFirstName() + " " + person.getLastName() + " is added");
         } catch (Exception e) {
             logger.error("failed to add the person", e);
         }
@@ -70,8 +70,8 @@ public class PersonsDAO implements PersonsDAOInt {
         boolean deleted = this.persons.values().removeIf(person -> personToDelete.getFirstName().equals(person.getFirstName())
                 && personToDelete.getLastName().equals(person.getLastName()));
         if (deleted) {
-            logger.info(personToDelete.getFirstName() + " " + personToDelete.getLastName() + "is delete");
-            logger.info("now there is" + persons.size() + "persons");
+            logger.info(personToDelete.getFirstName() + " " + personToDelete.getLastName() + " is delete");
+            logger.info("now there is " + persons.size() + " persons");
         } else {
             logger.error("nobody knows as" + personToDelete.getFirstName() + " " + personToDelete.getLastName());
         }

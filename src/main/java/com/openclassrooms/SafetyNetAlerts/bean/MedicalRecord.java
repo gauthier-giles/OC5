@@ -1,14 +1,9 @@
 package com.openclassrooms.SafetyNetAlerts.bean;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
 import org.springframework.lang.NonNull;
-
 import java.util.List;
 
-//@Getter
-//@Setter
-//@ToString
 @JsonFilter("medicalFilter")
 public class MedicalRecord {
     @NonNull
@@ -59,14 +54,6 @@ public class MedicalRecord {
     }
 
     public void setAllergies(List<String> allergies) {
-        this.allergies = allergies;
-    }
-
-    public MedicalRecord(@NonNull String firstName, @NonNull String lastName, String birthdate, List<String> medications, List<String> allergies) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdate = birthdate;
-        this.medications = medications;
         this.allergies = allergies;
     }
 

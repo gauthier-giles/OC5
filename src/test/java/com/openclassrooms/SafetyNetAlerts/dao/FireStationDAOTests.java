@@ -1,6 +1,5 @@
 package com.openclassrooms.SafetyNetAlerts.dao;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,8 +7,8 @@ import com.openclassrooms.SafetyNetAlerts.DAO.FireStationDAO;
 import com.openclassrooms.SafetyNetAlerts.DTO.JsonDTO;
 import com.openclassrooms.SafetyNetAlerts.bean.FireStation;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,15 +18,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import static org.mockito.Mockito.when;
-
-//import org.junit.Test;
 
 @RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
@@ -51,7 +46,7 @@ public class FireStationDAOTests {
     private static FireStation cluverStation;
 
 
-    @BeforeEach
+    @Before
     public void setUp() throws IOException, org.json.simple.parser.ParseException {
         String DUMMY_JSON =
                 "{\"firestations\": " +
@@ -84,7 +79,6 @@ public class FireStationDAOTests {
 
         // THEN
         Assertions.assertThat(firestations).containsExactlyInAnyOrder(republiqueStation, cluverStation);
-        System.out.println("TEST PASSES =============XXXXXXXX==============");
     }
 
     @Test
@@ -126,8 +120,5 @@ public class FireStationDAOTests {
         Assertions.assertThat(stations.get(0).getAddress()).isEqualTo("1509 Culver St");
         Assertions.assertThat(stations.get(0).getStation()).isEqualTo("2");
     }
-    // TODO refaire une classe de test
-
-
-
 }
+
